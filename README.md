@@ -1,2 +1,2 @@
 # RTK-Query
-Redux Toolkit Query
+Redux Toolkit Query example
