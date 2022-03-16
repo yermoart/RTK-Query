@@ -1,0 +1,52 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "airbnb",
+    "plugin:jest/recommended",
+    "plugin:jest/style",
+    "plugin:prettier/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 13,
+    "sourceType": "module"
+  },
+  "plugins": ["react", "jest", "prettier"],
+  "settings": {
+    "jest": {
+      "version": 27
+    }
+  },
+  "rules": {
+    "prettier/prettier": "error",
+    "jest/no-disabled-tests": "warn",
+    "jest/no-focused-tests": "error",
+    "jest/no-identical-title": "error",
+    "jest/prefer-to-have-length": "warn",
+    "jest/valid-expect": "error",
+    "no-console": "off",
+    "global-require": "off",
+    "max-classes-per-file": "off",
+    "consistent-return": "off",
+    "no-unused-vars": "warn",
+    // "react/jsx-props-no-spreading": "off",
+    "react/forbid-prop-types": "off",
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["state"]
+      }
+    ],
+    "import/extensions": "off",
+    "import/no-unresolved": "off"
+    // "import/prefer-default-export": "off"
+  }
+}
