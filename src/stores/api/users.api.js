@@ -12,7 +12,7 @@ const usersApi = createApi({
           `_page=${pagination.current}${
             pagination?.pageSize &&
             `&_limit=${pagination.pageSize}${
-              sort && `&_sort=${sort.columnKey}&_order=${sort.order}`
+              sort ? `&_sort=${sort.columnKey}&_order=${sort.order}` : ''
             }`
           }`
         }`,
@@ -23,8 +23,11 @@ const usersApi = createApi({
       },
       providesTags: result =>
         result?.data
-          ? [...result.data.map(({ id }) => ({ type: 'Users', id })), { type: 'Users', id: 'LIST' }]
-          : [{ type: 'Users', id: 'LIST' }],
+          ? [
+              ...result.data.map(({ id }) => ({ type: 'Users', id })),
+              { type: 'Users', id: 'USER_LIST' },
+            ]
+          : [{ type: 'Users', id: 'USER_LIST' }],
     }),
     getUser: build.query({
       query: id => `users/${id}`,
@@ -34,7 +37,7 @@ const usersApi = createApi({
         url: `users/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [{ type: 'Users', id: 'LIST' }],
+      invalidatesTags: [{ type: 'Users', id: 'USER_LIST' }],
     }),
   }),
 })

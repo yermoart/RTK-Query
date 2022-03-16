@@ -1,26 +1,31 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { PageHeader, Skeleton } from 'antd'
-import { useGetUserQuery } from '../stores'
+import { Col, Row, Typography } from 'antd'
+import UserHeader from '../components/UserHeader'
+import UserTodos from '../components/UserTodos'
+import UserPosts from '../components/UserPosts'
+
+const { Title } = Typography
 
 function UserRoute() {
   const { id } = useParams()
-  const { data, isFetching, isLoading } = useGetUserQuery(id)
-
-  if (isFetching || isLoading) return <Skeleton />
 
   return (
-    <PageHeader
-      className="site-page-header"
-      onBack={() => {
-        const { key } = window.history.state
-
-        if (!key) window.location.href = '/'
-
-        window.history.back()
-      }}
-      title={data.name}
-    />
+    <>
+      <UserHeader id={id} />
+      <Row style={{ marginTop: 20 }}>
+        <Col span={12}>
+          <Title level={3}>Todo list</Title>
+          <UserTodos id={id} />
+        </Col>
+        <Col span={12}>
+          <Title level={3} style={{ marginLeft: 10 }}>
+            Posts
+          </Title>
+          <UserPosts id={id} />
+        </Col>
+      </Row>
+    </>
   )
 }
 
